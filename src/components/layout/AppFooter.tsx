@@ -119,13 +119,14 @@ const AppFooter = () => {
             maxWidth: 1200,
             mx: "auto",
             display: "flex",
-            alignItems: "center",
+            flexDirection: { xs: "column", sm: "row" },
+            alignItems: { xs: "center", sm: "center" },
             justifyContent: "space-between",
             flexWrap: "wrap",
             gap: 1.5,
           }}
         >
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, flexWrap: "wrap", justifyContent: { xs: "center", sm: "flex-start" } }}>
             <Box
               sx={{
                 width: 28,
@@ -154,7 +155,7 @@ const AppFooter = () => {
             </Typography>
           </Box>
 
-          <Box sx={{ display: "flex", gap: 3 }}>
+          <Box sx={{ display: "flex", gap: { xs: 2, sm: 3 }, flexWrap: "wrap", justifyContent: "center" }}>
             {footerLinks.map((link) => (
               <Link
                 key={link}

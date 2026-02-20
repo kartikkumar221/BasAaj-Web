@@ -67,7 +67,7 @@ const ManageAddresses = () => {
   const [addrLine, setAddrLine] = useState("");
   const [addrLat, setAddrLat] = useState<number | undefined>(undefined);
   const [addrLng, setAddrLng] = useState<number | undefined>(undefined);
-  const [addrPlaceId, setAddrPlaceId] = useState<string | undefined>(undefined);
+  const [_addrPlaceId, setAddrPlaceId] = useState<string | undefined>(undefined);
 
   const [deleteAddrTarget, setDeleteAddrTarget] = useState<SavedAddressDto | null>(null);
   const [deleting, setDeleting] = useState(false);
@@ -249,8 +249,53 @@ const ManageAddresses = () => {
   ];
 
   return (
-    <Box sx={{ maxWidth: 1200, mx: "auto", px: { xs: 2, md: 3 }, py: 4 }}>
-      <Box sx={{ display: "flex", gap: 4, alignItems: "flex-start" }}>
+    <Box sx={{ maxWidth: 1200, mx: "auto", px: { xs: 2, md: 3 }, py: { xs: 2, md: 4 } }}>
+      {/* Mobile nav tabs */}
+      <Box
+        sx={{
+          display: { xs: "flex", md: "none" },
+          gap: 1,
+          mb: 2,
+          overflowX: "auto",
+          "&::-webkit-scrollbar": { display: "none" },
+          scrollbarWidth: "none",
+        }}
+      >
+        {sidebarItems.map((item) => (
+          <Box
+            key={item.label}
+            onClick={item.onClick}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 0.5,
+              px: 1.5,
+              py: 0.75,
+              borderRadius: 5,
+              cursor: "pointer",
+              flexShrink: 0,
+              border: `1.5px solid ${item.active ? theme.palette.secondary.main : theme.palette.divider}`,
+              backgroundColor: item.active ? `${theme.palette.secondary.main}10` : "transparent",
+            }}
+          >
+            <Box sx={{ color: item.active ? theme.palette.secondary.main : theme.palette.text.secondary, display: "flex", "& svg": { fontSize: 18 } }}>
+              {item.icon}
+            </Box>
+            <Typography
+              variant="caption"
+              sx={{
+                fontWeight: item.active ? 600 : 400,
+                color: item.active ? theme.palette.secondary.main : theme.palette.text.primary,
+                whiteSpace: "nowrap",
+              }}
+            >
+              {item.label}
+            </Typography>
+          </Box>
+        ))}
+      </Box>
+
+      <Box sx={{ display: "flex", gap: { xs: 0, md: 4 }, alignItems: "flex-start" }}>
         {/* Left sidebar */}
         <Box sx={{ display: { xs: "none", md: "block" }, flexShrink: 0, width: 240 }}>
           <List disablePadding>

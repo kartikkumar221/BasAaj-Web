@@ -124,7 +124,7 @@ const MyOffers = () => {
 
       {/* Stats cards */}
       {stats && (
-        <Box sx={{ display: "flex", gap: 2, mb: 3, flexWrap: "wrap" }}>
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr 1fr", sm: "1fr 1fr 1fr 1fr" }, gap: 2, mb: 3 }}>
           <StatCard
             label="Total Deals"
             value={stats.totalDeals}
@@ -338,7 +338,6 @@ const MyOffers = () => {
 };
 
 const ImageCarousel = ({ deal }: { deal: DealResponse }) => {
-  const theme = useTheme();
   const imgList =
     deal.mediaItems && deal.mediaItems.length > 0
       ? deal.mediaItems
@@ -380,7 +379,7 @@ const ImageCarousel = ({ deal }: { deal: DealResponse }) => {
           scrollSnapType: "x mandatory",
           scrollbarWidth: "none",
           "&::-webkit-scrollbar": { display: "none" },
-          height: 180,
+          height: { xs: 140, sm: 180 },
         }}
       >
         {imgList.map((src, i) => (
@@ -392,7 +391,7 @@ const ImageCarousel = ({ deal }: { deal: DealResponse }) => {
             sx={{
               flexShrink: 0,
               width: "100%",
-              height: 180,
+              height: { xs: 140, sm: 180 },
               objectFit: "cover",
               scrollSnapAlign: "start",
             }}
@@ -503,11 +502,9 @@ const StatCard = ({
   return (
     <Box
       sx={{
-        flex: "1 1 0",
-        minWidth: 120,
         border: `1px solid ${theme.palette.divider}`,
         borderRadius: 2,
-        p: 2,
+        p: { xs: 1.5, sm: 2 },
         display: "flex",
         alignItems: "center",
         gap: 1.5,

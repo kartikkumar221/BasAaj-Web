@@ -228,8 +228,53 @@ const Profile = () => {
   ];
 
   return (
-    <Box sx={{ maxWidth: 1200, mx: "auto", px: { xs: 2, md: 3 }, py: 4 }}>
-      <Box sx={{ display: "flex", gap: 4, alignItems: "flex-start" }}>
+    <Box sx={{ maxWidth: 1200, mx: "auto", px: { xs: 2, md: 3 }, py: { xs: 2, md: 4 } }}>
+      {/* Mobile nav tabs – visible only on xs/sm */}
+      <Box
+        sx={{
+          display: { xs: "flex", md: "none" },
+          gap: 1,
+          mb: 2,
+          overflowX: "auto",
+          "&::-webkit-scrollbar": { display: "none" },
+          scrollbarWidth: "none",
+        }}
+      >
+        {sidebarItems.map((item) => (
+          <Box
+            key={item.label}
+            onClick={item.onClick}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 0.5,
+              px: 1.5,
+              py: 0.75,
+              borderRadius: 5,
+              cursor: "pointer",
+              flexShrink: 0,
+              border: `1.5px solid ${item.active ? theme.palette.secondary.main : theme.palette.divider}`,
+              backgroundColor: item.active ? `${theme.palette.secondary.main}10` : "transparent",
+            }}
+          >
+            <Box sx={{ color: item.active ? theme.palette.secondary.main : theme.palette.text.secondary, display: "flex", "& svg": { fontSize: 18 } }}>
+              {item.icon}
+            </Box>
+            <Typography
+              variant="caption"
+              sx={{
+                fontWeight: item.active ? 600 : 400,
+                color: item.active ? theme.palette.secondary.main : theme.palette.text.primary,
+                whiteSpace: "nowrap",
+              }}
+            >
+              {item.label}
+            </Typography>
+          </Box>
+        ))}
+      </Box>
+
+      <Box sx={{ display: "flex", gap: { xs: 0, md: 4 }, alignItems: "flex-start" }}>
         {/* Left sidebar */}
         <Box
           sx={{
@@ -382,7 +427,7 @@ const Profile = () => {
           </Box>
 
           {/* Form fields */}
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 3, maxWidth: 500 }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 3, maxWidth: { xs: "100%", sm: 500 } }}>
             {/* Email (optional) */}
             <TextField
               label={AppText.profilePage.email}
@@ -585,7 +630,7 @@ const Profile = () => {
                   px: 2,
                   py: 1.25,
                   cursor: "pointer",
-                  minWidth: 150,
+                  minWidth: { xs: 120, sm: 150 },
                   backgroundColor: language === opt.value ? `${theme.palette.secondary.main}06` : "transparent",
                   transition: "border-color 0.2s",
                 }}

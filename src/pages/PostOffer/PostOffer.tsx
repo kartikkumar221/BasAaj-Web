@@ -189,8 +189,8 @@ const PostOffer = () => {
     fieldMap.get(name)?.visible ?? fallback;
   const isRequired = (name: string, fallback = false) =>
     fieldMap.get(name)?.required ?? fallback;
-  const getMaxLength = (name: string) =>
-    fieldMap.get(name)?.maxLength ?? undefined;
+  // const getMaxLength = (name: string) =>
+  //   fieldMap.get(name)?.maxLength ?? undefined;
 
   // ── Validation errors ──
   const [errors, setErrors] = useState<{ endDate?: string }>({});

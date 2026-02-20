@@ -1,9 +1,9 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 import { colors } from "./colors";
 import { typography } from "./typography";
 import { spacing } from "./spacing";
 
-const theme = createTheme({
+const baseTheme = createTheme({
   palette: {
     primary: colors.primary,
     secondary: colors.secondary,
@@ -39,5 +39,7 @@ const theme = createTheme({
     },
   },
 });
+
+const theme = responsiveFontSizes(baseTheme);
 
 export default theme;
